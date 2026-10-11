@@ -1,0 +1,116 @@
+# Add these entries to scripts.yaml; preserve any existing scripts.
+airzone_zone_marche_arret:
+  alias: Airzone - Marche/Arrêt zone
+  mode: queued
+  max: 4
+  fields:
+    zone:
+      description: Numéro de zone (1 à 4)
+    marche:
+      description: true pour activer, false pour désactiver
+  sequence:
+    - variables:
+        numero_zone: "{{ zone | int(0) }}"
+        activer: "{{ marche | bool(false) }}"
+    - condition: template
+      value_template: "{{ numero_zone | int in [1, 2, 3, 4] }}"
+    - variables:
+        adresse: "{{ 256 * (numero_zone | int) }}"
+        capteur: "sensor.airzone_zone_{{ numero_zone | int }}_etat_brut"
+    - variables:
+        brut: "{{ states(capteur) }}"
+    - condition: template
+      value_template: "{{ is_number(brut) }}"
+    - variables:
+        valeur: "{{ brut | int }}"
+        nouvelle_valeur: >-
+          {% set v = brut | int %}
+          {% set actif = ((v // 4) % 2) == 1 %}
+          {{ v + 4 if activer and not actif else (v - 4 if not activer and actif else v) }}
+    - condition: template
+      value_template: "{{ nouvelle_valeur | int != valeur | int }}"
+    - action: modbus.write_register
+      data:
+        hub: airzone_flexa
+        slave: 1
+        address: "{{ adresse | int }}"
+        value: "{{ nouvelle_valeur | int }}"
+    - delay:
+        milliseconds: 500
+    - action: homeassistant.update_entity
+      target:
+        entity_id: "{{ capteur }}"
+
+airzone_zone_mode_nuit:
+  alias: Airzone - Mode nuit
+  mode: queued
+  max: 4
+  fields:
+    zone:
+      description: Numéro de zone (1 à 4)
+    actif:
+      description: Activer ou désactiver le mode nuit
+  sequence:
+    - variables:
+        numero_zone: "{{ zone | int(0) }}"
+        activer: "{{ actif | bool(false) }}"
+    - condition: template
+      value_template: "{{ numero_zone | int in [1, 2, 3, 4] }}"
+    - variables:
+        adresse: "{{ 256 * (numero_zone | int) }}"
+        capteur: "sensor.airzone_zone_{{ numero_zone | int }}_etat_brut"
+    - variables:
+        brut: "{{ states(capteur) }}"
+    - condition: template
+      value_template: "{{ is_number(brut) }}"
+    - variables:
+        valeur: "{{ brut | int }}"
+        nouvelle_valeur: >-
+          {% set v = brut | int %}
+          {% set nuit = (v % 2) == 1 %}
+          {{ v + 1 if activer and not nuit else (v - 1 if not activer and nuit else v) }}
+    - condition: template
+      value_template: "{{ nouvelle_valeur | int != valeur | int }}"
+    - action: modbus.write_register
+      data:
+        hub: airzone_flexa
+        slave: 1
+        address: "{{ adresse | int }}"
+        value: "{{ nouvelle_valeur | int }}"
+    - delay:
+        milliseconds: 500
+    - action: homeassistant.update_entity
+      target:
+        entity_id: "{{ capteur }}"
+
+airzone_mode_global:
+  alias: Airzone - Mode global
+  mode: queued
+  max: 2
+  fields:
+    mode:
+      description: 0=Arrêt, 1=Froid, 3=Ventilation, 4=Chauffage
+  sequence:
+    - variables:
+        brut: "{{ states('sensor.airzone_mode_global') }}"
+        nouveau_mode: "{{ mode | int(-1) }}"
+    - condition: template
+      value_template: "{{ is_number(brut) and nouveau_mode | int in [0, 1, 3, 4] }}"
+    - variables:
+        valeur: "{{ brut | int }}"
+        nouvelle_valeur: >-
+          {% set v = brut | int %}
+          {{ (v // 512) * 512 + (nouveau_mode | int) }}
+    - condition: template
+      value_template: "{{ nouvelle_valeur | int != valeur | int }}"
+    - action: modbus.write_register
+      data:
+        hub: airzone_flexa
+        slave: 1
+        address: 0
+        value: "{{ nouvelle_valeur | int }}"
+    - delay:
+        milliseconds: 500
+    - action: homeassistant.update_entity
+      target:
+        entity_id: sensor.airzone_mode_global
