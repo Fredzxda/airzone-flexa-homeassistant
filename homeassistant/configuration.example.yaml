@@ -1,0 +1,26 @@
+# Exemple de configuration.yaml pour l'intégration Airzone FLEXA 1.x.
+# Ne remplacez pas votre configuration.yaml actuel par ce fichier !
+# Copiez les inclusions dans votre configuration existante, après sauvegarde.
+#
+# Le fichier homeassistant/modbus.yaml contient une LISTE de hubs Modbus.
+# Le fichier homeassistant/templates.yaml contient une LISTE de blocs template.
+# Les fichiers doivent être copiés dans le répertoire de configuration HA
+# (ou les chemins des !include adaptés).
+
+# Ajouter sous les clés existantes, sans créer de doublons :
+modbus: !include modbus.yaml
+template: !include templates.yaml
+
+# Si votre installation utilise déjà scripts.yaml, conserver la ligne existante :
+script: !include scripts.yaml
+
+# ATTENTION : si modbus: ou template: existent déjà dans configuration.yaml,
+# fusionner leur contenu avec les fichiers inclus plutôt que de les redéclarer.
+# De même, les scripts Airzone doivent être fusionnés dans scripts.yaml existant.
+#
+# L'automatisation de synchronisation de l'horloge est gérée par Home Assistant
+# via l'interface (automations.yaml), pas par ce fichier :
+# docs/synchronisation-horloge.fr.md
+#
+# Les quatre thermostats HACS Template Climate se configurent via l'interface.
+# Voir docs/template-climate.fr.md.
