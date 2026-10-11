@@ -1,0 +1,256 @@
+# À intégrer sous la clé `modbus:` dans configuration.yaml ; ne pas créer deux clés modbus.
+- name: airzone_flexa
+  type: tcp
+  host: 192.168.1.100
+  port: 502
+  delay: 1
+  timeout: 3
+
+  climates:
+      # --- ZONE 1 (Salon / Master) ---
+  - name: "Clim Zone 1"
+    address: 266
+    target_temp_register: 259
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+    scale: 0.1
+    precision: 1
+#        hvac_onoff_register: 256
+
+  - name: "Clim Zone 2"
+    address: 522
+    target_temp_register: 515
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+    scale: 0.1
+    precision: 1
+#        hvac_onoff_register: 512
+
+  - name: "Clim Zone 3"
+    address: 778
+    target_temp_register: 771
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+    scale: 0.1
+    precision: 1
+        # Pas de hvac_onoff_register : registre 768 = bitfield
+
+  - name: "Clim Zone 4"
+    address: 1034
+    target_temp_register: 1027
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+    scale: 0.1
+    precision: 1
+        # Pas de hvac_onoff_register : 1024 est un bitfield
+
+  sensors:
+  - name: "Airzone Mode Global"
+    address: 0
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+
+  - name: "AZ Diagnostic Reg 1"
+    address: 1
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 2"
+    address: 2
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 3"
+    address: 3
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 4"
+    address: 4
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 5"
+    address: 5
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 6"
+    address: 6
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 7"
+    address: 7
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 8"
+    address: 8
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Diagnostic Reg 9"
+    address: 9
+    slave: 1
+    input_type: holding
+    data_type: int16
+    scan_interval: 60
+
+  - name: "AZ Reg 10"
+    address: 10
+    slave: 1
+    scan_interval: 60
+    data_type: int16
+
+  - name: "Airzone Zone 1 État brut"
+    address: 256
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+
+  - name: "Airzone Zone 1 Temp Min"
+    address: 257
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 1 Temp Max"
+    address: 258
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 2 État brut"
+    address: 512
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+
+  - name: "Airzone Zone 2 Temp Min"
+    address: 513
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 2 Temp Max"
+    address: 514
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 3 État brut"
+    address: 768
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+
+  - name: "Airzone Zone 3 Temp Min"
+    address: 769
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 3 Temp Max"
+    address: 770
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 4 État brut"
+    address: 1024
+    slave: 1
+    scan_interval: 30
+    data_type: int16
+
+  - name: "Airzone Zone 4 Temp Min"
+    address: 1025
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Zone 4 Temp Max"
+    address: 1026
+    slave: 1
+    scan_interval: 300
+    data_type: int16
+    scale: 0.1
+    precision: 1
+
+  - name: "Airzone Test Z1 Reg 11"
+    slave: 1
+    address: 267
+    input_type: holding
+    data_type: uint16
+    scan_interval: 3600
+
+  - name: "Airzone Test Z1 Reg 12"
+    slave: 1
+    address: 268
+    input_type: holding
+    data_type: uint16
+    scan_interval: 3600
+
+  - name: "Airzone Test Z1 Reg 13"
+    slave: 1
+    address: 269
+    input_type: holding
+    data_type: uint16
+    scan_interval: 3600
+
+  - name: "Airzone Test Système Reg 11"
+    slave: 1
+    address: 11
+    input_type: holding
+    data_type: uint16
+    scan_interval: 3600
+
+  - name: "Airzone Test Système Reg 12"
+    slave: 1
+    address: 12
+    input_type: holding
+    data_type: uint16
+    scan_interval: 3600
+
+  - name: "Airzone Zones Présentes"
+    address: 9
+    slave: 1
+    input_type: holding
+    data_type: uint16
+    scan_interval: 60
+
