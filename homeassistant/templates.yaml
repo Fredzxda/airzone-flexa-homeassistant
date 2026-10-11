@@ -1,0 +1,124 @@
+# À intégrer sous la clé `template:` dans configuration.yaml ; ne pas créer deux clés template.
+#AIRZONE
+- binary_sensor:
+  - name: "Airzone Zone 1 Mode Nuit"
+    unique_id: airzone_zone_1_night
+    state: >
+      {{ ((states('sensor.airzone_zone_1_etat_brut') | int(0) // 1) % 2) == 1 }}
+
+  - name: "Airzone Zone 1 Programmations désactivées"
+    unique_id: airzone_zone_1_schedule_disabled
+    state: >
+      {{ ((states('sensor.airzone_zone_1_etat_brut') | int(0) // 2) % 2) == 1 }}
+
+  - name: "Airzone Zone 1 Activée"
+    unique_id: airzone_zone_1_active
+    state: >
+      {{ ((states('sensor.airzone_zone_1_etat_brut') | int(0) // 4) % 2) == 1 }}
+
+  - name: "Airzone Zone 2 Mode Nuit"
+    unique_id: airzone_zone_2_night
+    state: >
+      {{ ((states('sensor.airzone_zone_2_etat_brut') | int(0) // 1) % 2) == 1 }}
+
+  - name: "Airzone Zone 2 Programmations désactivées"
+    unique_id: airzone_zone_2_schedule_disabled
+    state: >
+      {{ ((states('sensor.airzone_zone_2_etat_brut') | int(0) // 2) % 2) == 1 }}
+
+  - name: "Airzone Zone 2 Activée"
+    unique_id: airzone_zone_2_active
+    state: >
+      {{ ((states('sensor.airzone_zone_2_etat_brut') | int(0) // 4) % 2) == 1 }}
+
+  - name: "Airzone Zone 3 Mode Nuit"
+    unique_id: airzone_zone_3_night
+    state: >
+      {{ ((states('sensor.airzone_zone_3_etat_brut') | int(0) // 1) % 2) == 1 }}
+
+  - name: "Airzone Zone 3 Programmations désactivées"
+    unique_id: airzone_zone_3_schedule_disabled
+    state: >
+      {{ ((states('sensor.airzone_zone_3_etat_brut') | int(0) // 2) % 2) == 1 }}
+
+  - name: "Airzone Zone 3 Activée"
+    unique_id: airzone_zone_3_active
+    state: >
+      {{ ((states('sensor.airzone_zone_3_etat_brut') | int(0) // 4) % 2) == 1 }}
+
+  - name: "Airzone Zone 4 Mode Nuit"
+    unique_id: airzone_zone_4_night
+    state: >
+      {{ ((states('sensor.airzone_zone_4_etat_brut') | int(0) // 1) % 2) == 1 }}
+
+  - name: "Airzone Zone 4 Programmations désactivées"
+    unique_id: airzone_zone_4_schedule_disabled
+    state: >
+      {{ ((states('sensor.airzone_zone_4_etat_brut') | int(0) // 2) % 2) == 1 }}
+
+  - name: "Airzone Zone 4 Activée"
+    unique_id: airzone_zone_4_active
+    state: >
+      {{ ((states('sensor.airzone_zone_4_etat_brut') | int(0) // 4) % 2) == 1 }}
+
+- sensor:
+  - name: "Airzone Mode"
+    unique_id: airzone_mode
+    state: >
+      {% set mode = states('sensor.airzone_mode_global') | int(-1) %}
+      {% if mode == 0 %}
+        Arrêt
+      {% elif mode == 1 %}
+        Froid
+      {% elif mode == 3 %}
+        Ventilation
+      {% elif mode == 4 %}
+        Chauffage
+      {% else %}
+        Inconnu ({{ mode }})
+      {% endif %}
+
+- select:
+  - name: "Airzone Mode Global"
+    unique_id: airzone_mode_global_select
+    state: >
+      {% set mode = states('sensor.airzone_mode_global') | int(-1) %}
+      {% if mode == 0 %}
+        Arrêt
+      {% elif mode == 1 %}
+        Froid
+      {% elif mode == 3 %}
+        Ventilation
+      {% elif mode == 4 %}
+        Chauffage
+      {% else %}
+        Inconnu
+      {% endif %}
+    options: >
+      {{ ['Arrêt', 'Froid', 'Ventilation', 'Chauffage'] }}
+    select_option:
+    - action: script.airzone_mode_global
+      data:
+        mode: >
+          {% if option == 'Arrêt' %}
+            0
+          {% elif option == 'Froid' %}
+            1
+          {% elif option == 'Ventilation' %}
+            3
+          {% elif option == 'Chauffage' %}
+            4
+          {% endif %}
+    icon: >
+      {% set mode = states('sensor.airzone_mode_global') | int(-1) %}
+      {% if mode == 4 %}
+        mdi:white-balance-sunny
+      {% elif mode == 1 %}
+        mdi:snowflake
+      {% elif mode == 3 %}
+        mdi:fan
+      {% elif mode == 0 %}
+        mdi:stop-circle-outline
+      {% else %}
+        mdi:help-circle-outline
+      {% endif %}
