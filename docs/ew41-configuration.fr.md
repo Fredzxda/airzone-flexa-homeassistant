@@ -71,4 +71,4 @@ Cet exemple effectue **une lecture uniquement**, pour commencer sans action sur 
 - Valeurs indisponibles : verifier que la revision FLEXA prend en charge les registres testes ; ne pas multiplier les lectures trop rapidement.
 - Eviter d'exposer Modbus TCP a Internet : le protocole ne fournit pas, a lui seul, d'authentification adaptee.
 
-La cartographie et les exemples complets des quatre zones seront ajoutes progressivement, apres nettoyage des configurations de reference.
+Pour poursuivre après le test en lecture seule, suivre le [guide d'installation pas à pas](installation.fr.md) et les [exemples Modbus pour quatre zones](../homeassistant/modbus.yaml). Les lectures exploratoires ne font pas partie de la configuration opérationnelle publiée.
