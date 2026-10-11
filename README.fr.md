@@ -54,6 +54,8 @@ GNU GPL v3.0 - voir [LICENSE](LICENSE).
 
 ## Fichiers de configuration et documentation
 
+[Exemple de `configuration.yaml` et inclusions](homeassistant/configuration.example.yaml) : montre comment raccorder les fichiers Modbus, templates et scripts sans remplacer la configuration existante.
+
 Pour reproduire l'installation, consulter les fichiers suivants dans cet ordre :
 
 1. [Configuration de la passerelle EW41](docs/ew41-configuration.fr.md) : câblage RS485, paramètres 19200 8E1, réseau local et port 502.
