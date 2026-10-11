@@ -1,6 +1,6 @@
 # Airzone FLEXA 1.x — Local Home Assistant integration
 
-[Documentation en français](README.fr.md)
+[Documentation en français](README.fr.md) | [EW41 setup guide (French)](docs/ew41-configuration.fr.md)
 
 **Bring legacy Airzone FLEXA 1.x zoning systems into Home Assistant without an Airzone cloud gateway.**
 
