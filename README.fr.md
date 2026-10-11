@@ -63,4 +63,6 @@ Pour reproduire l'installation, consulter les fichiers suivants dans cet ordre :
 5. [Scripts de pilotage](homeassistant/scripts.yaml) : à ajouter à `scripts.yaml`.
 6. [Guide de l'intégration HACS Template Climate](docs/template-climate.fr.md) et [options des quatre thermostats](homeassistant/template-climate-options.json) : à configurer via l'interface Home Assistant.
 
+7. [Synchronisation quotidienne de l'horloge Tacto](docs/synchronisation-horloge.fr.md) : automatisation validée pour corriger une dérive, exécutée à 04 h 15 ; passage été/hiver encore à valider.
+
 **Important :** les fichiers sont des exemples anonymisés extraits de l'installation de référence, pas un package prêt à installer. Fusionner les entrées avec les clés YAML existantes ; ne pas dupliquer `modbus:` ou `template:`. Tester les lectures avant d'activer les écritures.
