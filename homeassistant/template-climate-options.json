@@ -1,0 +1,299 @@
+{
+  "integration": "https://github.com/holdestmade/template_climate",
+  "note": "Options extraites de HA, anonymisées; correction de l'icône zone 3 dans cet exemple",
+  "zones": [
+    {
+      "zone": 1,
+      "options": {
+        "current_temperature_template": "{{ state_attr('climate.clim_zone_1', 'current_temperature') }}",
+        "fan_modes": [],
+        "hvac_mode_template": "{% if is_state('binary_sensor.airzone_zone_1_activee', 'on') %}\n  auto\n{% else %}\n  off\n{% endif %}",
+        "icon": "{% set mode = states('sensor.airzone_mode_global') | int(-1) %}\n{% set actif = is_state('binary_sensor.airzone_zone_1_activee', 'on') %}\n\n{% if mode == 4 %}\n  {{ 'mdi:white-balance-sunny' if actif else 'mdi:weather-sunny-off' }}\n{% elif mode == 1 %}\n  {{ 'mdi:snowflake' if actif else 'mdi:snowflake-off' }}\n{% elif mode == 3 %}\n  {{ 'mdi:fan' if actif else 'mdi:fan-off' }}\n{% elif mode == 0 %}\n  {{ 'mdi:stop-circle' if actif else 'mdi:stop-circle-outline' }}\n{% else %}\n  mdi:help-circle-outline\n{% endif %}",
+        "max_temp_template": "{{ states('sensor.airzone_zone_1_temp_max') | float(30) }}",
+        "min_temp_template": "{{ states('sensor.airzone_zone_1_temp_min') | float(18) }}",
+        "modes": [
+          "auto",
+          "off"
+        ],
+        "name": "Airzone Zone 1",
+        "precision": 0.5,
+        "preset_mode_template": "{% set brut = states('sensor.airzone_zone_1_etat_brut') %}\n{% if is_number(brut) %}\n  {{ 'sleep' if (brut | int) % 2 == 1 else 'none' }}\n{% else %}\n  none\n{% endif %}",
+        "preset_modes": [
+          "none",
+          "sleep"
+        ],
+        "set_hvac_mode": [
+          {
+            "action": "script.airzone_zone_marche_arret",
+            "data": {
+              "marche": "{{ hvac_mode != 'off' }}",
+              "zone": 1
+            },
+            "metadata": {}
+          }
+        ],
+        "set_preset_mode": [
+          {
+            "action": "script.airzone_zone_mode_nuit",
+            "data": {
+              "actif": "{{ preset_mode == 'sleep' }}",
+              "zone": 1
+            }
+          }
+        ],
+        "set_temperature": [
+          {
+            "action": "climate.set_temperature",
+            "data": {
+              "temperature": "{{ temperature }}"
+            },
+            "metadata": {},
+            "target": {
+              "entity_id": "climate.clim_zone_1"
+            }
+          },
+          {
+            "delay": {
+              "hours": 0,
+              "milliseconds": 500,
+              "minutes": 0,
+              "seconds": 0
+            }
+          },
+          {
+            "action": "homeassistant.update_entity",
+            "data": {
+              "entity_id": [
+                "climate.clim_zone_1"
+              ]
+            }
+          }
+        ],
+        "swing_modes": [],
+        "target_temperature_template": "{{ state_attr('climate.clim_zone_1', 'temperature') }}",
+        "temp_step": 0.5
+      }
+    },
+    {
+      "zone": 2,
+      "options": {
+        "current_temperature_template": "{{ state_attr('climate.clim_zone_2', 'current_temperature') }}",
+        "fan_modes": [],
+        "hvac_mode_template": "{% if is_state('binary_sensor.airzone_zone_2_activee', 'on') %}\n  auto\n{% else %}\n  off\n{% endif %}",
+        "icon": "{% set mode = states('sensor.airzone_mode_global') | int(-1) %}\n{% set actif = is_state('binary_sensor.airzone_zone_2_activee', 'on') %}\n\n{% if mode == 4 %}\n  {{ 'mdi:white-balance-sunny' if actif else 'mdi:weather-sunny-off' }}\n{% elif mode == 1 %}\n  {{ 'mdi:snowflake' if actif else 'mdi:snowflake-off' }}\n{% elif mode == 3 %}\n  {{ 'mdi:fan' if actif else 'mdi:fan-off' }}\n{% elif mode == 0 %}\n  {{ 'mdi:stop-circle' if actif else 'mdi:stop-circle-outline' }}\n{% else %}\n  mdi:help-circle-outline\n{% endif %}",
+        "max_temp_template": "{{ states('sensor.airzone_zone_2_temp_max') | float(30) }}",
+        "min_temp_template": "{{ states('sensor.airzone_zone_2_temp_min') | float(18) }}",
+        "modes": [
+          "auto",
+          "off"
+        ],
+        "name": "Airzone Zone 2",
+        "precision": 0.5,
+        "preset_mode_template": "{% set brut = states('sensor.airzone_zone_2_etat_brut') %}\n{% if is_number(brut) %}\n  {{ 'sleep' if (brut | int) % 2 == 1 else 'none' }}\n{% else %}\n  none\n{% endif %}",
+        "preset_modes": [
+          "none",
+          "sleep"
+        ],
+        "set_hvac_mode": [
+          {
+            "action": "script.airzone_zone_marche_arret",
+            "data": {
+              "marche": "{{ hvac_mode != 'off' }}",
+              "zone": 2
+            },
+            "metadata": {}
+          }
+        ],
+        "set_preset_mode": [
+          {
+            "action": "script.airzone_zone_mode_nuit",
+            "data": {
+              "actif": "{{ preset_mode == 'sleep' }}",
+              "zone": 2
+            },
+            "metadata": {}
+          }
+        ],
+        "set_temperature": [
+          {
+            "action": "climate.set_temperature",
+            "data": {
+              "temperature": "{{ temperature }}"
+            },
+            "metadata": {},
+            "target": {
+              "entity_id": "climate.clim_zone_2"
+            }
+          },
+          {
+            "delay": {
+              "hours": 0,
+              "milliseconds": 500,
+              "minutes": 0,
+              "seconds": 0
+            }
+          },
+          {
+            "action": "homeassistant.update_entity",
+            "data": {},
+            "metadata": {},
+            "target": {
+              "entity_id": "climate.clim_zone_2"
+            }
+          }
+        ],
+        "swing_modes": [],
+        "target_temperature_template": "{{ state_attr('climate.clim_zone_2', 'temperature') }}",
+        "temp_step": 0.5
+      }
+    },
+    {
+      "zone": 3,
+      "options": {
+        "current_temperature_template": "{{ state_attr('climate.clim_zone_3', 'current_temperature') }}",
+        "fan_modes": [],
+        "hvac_mode_template": "{% if is_state('binary_sensor.airzone_zone_3_activee', 'on') %}\n  auto\n{% else %}\n  off\n{% endif %}",
+        "icon": "{% set mode = states('sensor.airzone_mode_global') | int(-1) %}\n{% set actif = is_state('binary_sensor.airzone_zone_3_activee', 'on') %}\n\n{% if mode == 4 %}\n  {{ 'mdi:white-balance-sunny' if actif else 'mdi:weather-sunny-off' }}\n{% elif mode == 1 %}\n  {{ 'mdi:snowflake' if actif else 'mdi:snowflake-off' }}\n{% elif mode == 3 %}\n  {{ 'mdi:fan' if actif else 'mdi:fan-off' }}\n{% elif mode == 0 %}\n  {{ 'mdi:stop-circle' if actif else 'mdi:stop-circle-outline' }}\n{% else %}\n  mdi:help-circle-outline\n{% endif %}",
+        "max_temp_template": "{{ states('sensor.airzone_zone_3_temp_max') | float(30) }}",
+        "min_temp_template": "{{ states('sensor.airzone_zone_3_temp_min') | float(18) }}",
+        "modes": [
+          "auto",
+          "off"
+        ],
+        "name": "Airzone Zone 3",
+        "precision": 0.5,
+        "preset_mode_template": "{% set brut = states('sensor.airzone_zone_3_etat_brut') %}\n{% if is_number(brut) %}\n  {{ 'sleep' if (brut | int) % 2 == 1 else 'none' }}\n{% else %}\n  none\n{% endif %}",
+        "preset_modes": [
+          "none",
+          "sleep"
+        ],
+        "set_hvac_mode": [
+          {
+            "action": "script.airzone_zone_marche_arret",
+            "data": {
+              "marche": "{{ hvac_mode != 'off' }}",
+              "zone": 3
+            },
+            "metadata": {}
+          }
+        ],
+        "set_preset_mode": [
+          {
+            "action": "script.airzone_zone_mode_nuit",
+            "data": {
+              "actif": "{{ preset_mode == 'sleep' }}",
+              "zone": 3
+            },
+            "metadata": {}
+          }
+        ],
+        "set_temperature": [
+          {
+            "action": "climate.set_temperature",
+            "data": {
+              "temperature": "{{ temperature }}"
+            },
+            "metadata": {},
+            "target": {
+              "entity_id": "climate.clim_zone_3"
+            }
+          },
+          {
+            "delay": {
+              "hours": 0,
+              "milliseconds": 500,
+              "minutes": 0,
+              "seconds": 0
+            }
+          },
+          {
+            "action": "homeassistant.update_entity",
+            "data": {
+              "entity_id": [
+                "climate.clim_zone_3"
+              ]
+            },
+            "metadata": {}
+          }
+        ],
+        "swing_modes": [],
+        "target_temperature_template": "{{ state_attr('climate.clim_zone_3', 'temperature') }}",
+        "temp_step": 0.5
+      }
+    },
+    {
+      "zone": 4,
+      "options": {
+        "current_temperature_template": "{{ state_attr('climate.clim_zone_4', 'current_temperature') }}",
+        "fan_modes": [],
+        "hvac_mode_template": "{% if is_state('binary_sensor.airzone_zone_4_activee', 'on') %}\n  auto\n{% else %}\n  off\n{% endif %}",
+        "icon": "{% set mode = states('sensor.airzone_mode_global') | int(-1) %}\n{% set actif = is_state('binary_sensor.airzone_zone_4_activee', 'on') %}\n\n{% if mode == 4 %}\n  {{ 'mdi:white-balance-sunny' if actif else 'mdi:weather-sunny-off' }}\n{% elif mode == 1 %}\n  {{ 'mdi:snowflake' if actif else 'mdi:snowflake-off' }}\n{% elif mode == 3 %}\n  {{ 'mdi:fan' if actif else 'mdi:fan-off' }}\n{% elif mode == 0 %}\n  {{ 'mdi:stop-circle' if actif else 'mdi:stop-circle-outline' }}\n{% else %}\n  mdi:help-circle-outline\n{% endif %}",
+        "max_temp_template": "{{ states('sensor.airzone_zone_4_temp_max') | float(30) }}",
+        "min_temp_template": "{{ states('sensor.airzone_zone_4_temp_min') | float(18) }}",
+        "modes": [
+          "auto",
+          "off"
+        ],
+        "name": "Airzone Zone 4",
+        "precision": 0.5,
+        "preset_mode_template": "{% set brut = states('sensor.airzone_zone_4_etat_brut') %}\n{% if is_number(brut) %}\n  {{ 'sleep' if (brut | int) % 2 == 1 else 'none' }}\n{% else %}\n  none\n{% endif %}",
+        "preset_modes": [
+          "none",
+          "sleep"
+        ],
+        "set_hvac_mode": [
+          {
+            "action": "script.airzone_zone_marche_arret",
+            "data": {
+              "marche": "{{ hvac_mode != 'off' }}",
+              "zone": 4
+            },
+            "metadata": {}
+          }
+        ],
+        "set_preset_mode": [
+          {
+            "action": "script.airzone_zone_mode_nuit",
+            "data": {
+              "actif": "{{ preset_mode == 'sleep' }}",
+              "zone": 4
+            },
+            "metadata": {}
+          }
+        ],
+        "set_temperature": [
+          {
+            "action": "climate.set_temperature",
+            "data": {
+              "temperature": "{{ temperature }}"
+            },
+            "metadata": {},
+            "target": {
+              "entity_id": "climate.clim_zone_4"
+            }
+          },
+          {
+            "delay": {
+              "hours": 0,
+              "milliseconds": 500,
+              "minutes": 0,
+              "seconds": 0
+            }
+          },
+          {
+            "action": "homeassistant.update_entity",
+            "data": {
+              "entity_id": [
+                "climate.clim_zone_4"
+              ]
+            },
+            "metadata": {}
+          }
+        ],
+        "swing_modes": [],
+        "target_temperature_template": "{{ state_attr('climate.clim_zone_4', 'temperature') }}",
+        "temp_step": 0.5
+      }
+    }
+  ]
+}
