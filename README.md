@@ -83,4 +83,6 @@ This project is intended to be distributed under **GNU GPL v3.0**. See the repos
 5. [Control scripts](homeassistant/scripts.yaml): add to `scripts.yaml`.
 6. [HACS Template Climate guide (French)](docs/template-climate.fr.md) and [four-zone thermostat options](homeassistant/template-climate-options.json): configure via the Home Assistant UI.
 
+7. [Daily Tacto clock synchronization (French)](docs/synchronisation-horloge.fr.md): tested correction of clock drift, scheduled at 04:15 local time; seasonal DST transitions remain to be verified.
+
 **Note:** these are sanitized reference files, not a ready-to-install package. Merge YAML keys rather than duplicating `modbus:` or `template:`. Test reads before enabling writes.
