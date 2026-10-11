@@ -10,4 +10,3 @@ Les entités Modbus `climate.clim_zone_1` à `climate.clim_zone_4` fournissent t
 
 `auto` signifie ici **zone activée** : le mode global chaud/froid/ventilation est géré séparément via `select.airzone_mode_global`.
 
-**Correction dans l'exemple :** l'icône de la zone 3 se réfère à la zone 3 (la configuration d'origine faisait référence à la zone 2). Aucun changement n'a été appliqué au Home Assistant de référence.
