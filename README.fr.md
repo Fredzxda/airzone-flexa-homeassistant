@@ -42,7 +42,7 @@ Mode global : registre 0. Echelle des temperatures : 0,1. Bits d'etat observes :
 
 ## Installation
 
-Commencer par le [guide de configuration EW41](docs/ew41-configuration.fr.md). Les fichiers YAML generiques sont encore en preparation ; ne pas recopier aveuglement les adresses ou les ecritures sur une autre generation de centrale.
+Commencer par le **[guide d'installation pas à pas](docs/installation.fr.md)**. Les exemples YAML sont disponibles, mais doivent être adaptés au nombre de zones et à la révision de la centrale. Ne pas recopier aveuglément des écritures Modbus sur une autre génération.
 
 ## Etat et securite
 
@@ -56,15 +56,17 @@ GNU GPL v3.0 - voir [LICENSE](LICENSE).
 
 [Exemple de `configuration.yaml` et inclusions](homeassistant/configuration.example.yaml) : montre comment raccorder les fichiers Modbus, templates et scripts sans remplacer la configuration existante.
 
-Pour reproduire l'installation, consulter les fichiers suivants dans cet ordre :
+Pour reproduire l'installation, suivre d'abord le [guide pas à pas](docs/installation.fr.md), puis consulter ces références :
 
 1. [Configuration de la passerelle EW41](docs/ew41-configuration.fr.md) : câblage RS485, paramètres 19200 8E1, réseau local et port 502.
 2. [Registres Modbus système et zones](docs/registres-modbus.fr.md) : valeurs observées, registres confirmés et hypothèses.
 3. [Configuration Modbus et capteurs](homeassistant/modbus.yaml) : fragment à intégrer dans `configuration.yaml` sous `modbus:`.
 4. [Capteurs templates et sélecteur de mode global](homeassistant/templates.yaml) : fragment à intégrer dans `configuration.yaml` sous `template:`.
-5. [Scripts de pilotage](homeassistant/scripts.yaml) : à ajouter à `scripts.yaml`.
+5. [Scripts de pilotage](homeassistant/scripts.yaml) : à ajouter à `scripts.yaml` ; les lectures exploratoires ont été retirées de l'exemple Modbus opérationnel.
 6. [Guide de l'intégration HACS Template Climate](docs/template-climate.fr.md) et [configuration JSON des quatre instances](homeassistant/template-climate-options.json) : une instance `holdestmade/template_climate` par zone, à créer et paramétrer **manuellement via l'interface Home Assistant**. Le JSON est une référence des options, **pas un fichier directement importable** ni un fragment de `configuration.yaml`.
 
 7. [Synchronisation quotidienne de l'horloge Tacto](docs/synchronisation-horloge.fr.md) : automatisation validée pour corriger une dérive, exécutée à 04 h 15 ; passage été/hiver encore à valider.
+
+8. [Dépannage](docs/depannage.fr.md) : problèmes de connexion, configuration YAML, entités et commandes.
 
 **Important :** les fichiers sont des exemples anonymisés extraits de l'installation de référence, pas un package prêt à installer. Fusionner les entrées avec les clés YAML existantes ; ne pas dupliquer `modbus:` ou `template:`. Tester les lectures avant d'activer les écritures.
