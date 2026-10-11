@@ -73,3 +73,14 @@ For the zone-state bitfield, observed meanings include bit 0 (night), bit 1 (sch
 ## License
 
 This project is intended to be distributed under **GNU GPL v3.0**. See the repository's `LICENSE` file for the applicable license text.
+
+## Configuration files and documentation
+
+1. [EW41 setup guide (French)](docs/ew41-configuration.fr.md): RS485 wiring, 19200 8E1, LAN and TCP port 502.
+2. [System and zone Modbus registers (French)](docs/registres-modbus.fr.md): observed values, confirmed behavior and hypotheses.
+3. [Modbus sensors and climate entities](homeassistant/modbus.yaml): merge under `modbus:` in `configuration.yaml`.
+4. [Template sensors and global mode selector](homeassistant/templates.yaml): merge under `template:` in `configuration.yaml`.
+5. [Control scripts](homeassistant/scripts.yaml): add to `scripts.yaml`.
+6. [HACS Template Climate guide (French)](docs/template-climate.fr.md) and [four-zone thermostat options](homeassistant/template-climate-options.json): configure via the Home Assistant UI.
+
+**Note:** these are sanitized reference files, not a ready-to-install package. Merge YAML keys rather than duplicating `modbus:` or `template:`. Test reads before enabling writes.
