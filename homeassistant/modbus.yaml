@@ -1,13 +1,13 @@
 # À intégrer sous la clé `modbus:` dans configuration.yaml ; ne pas créer deux clés modbus.
 - name: airzone_flexa
   type: tcp
-  host: 192.168.1.100
+  host: 192.168.1.100  # À remplacer par l'adresse IP locale de VOTRE passerelle EW41
   port: 502
   delay: 1
   timeout: 3
 
   climates:
-      # --- ZONE 1 (Salon / Master) ---
+  # --- ZONE 1 ---
   - name: "Clim Zone 1"
     address: 266
     target_temp_register: 259
