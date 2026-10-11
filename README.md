@@ -76,6 +76,8 @@ This project is intended to be distributed under **GNU GPL v3.0**. See the repos
 
 ## Configuration files and documentation
 
+[Example `configuration.yaml` with includes](homeassistant/configuration.example.yaml): shows how to connect the Modbus, template and script fragments without replacing your existing configuration.
+
 1. [EW41 setup guide (French)](docs/ew41-configuration.fr.md): RS485 wiring, 19200 8E1, LAN and TCP port 502.
 2. [System and zone Modbus registers (French)](docs/registres-modbus.fr.md): observed values, confirmed behavior and hypotheses.
 3. [Modbus sensors and climate entities](homeassistant/modbus.yaml): merge under `modbus:` in `configuration.yaml`.
