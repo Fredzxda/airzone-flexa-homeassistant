@@ -58,9 +58,13 @@ Global mode is read from holding register **0**. All temperature registers shown
 
 For the zone-state bitfield, observed meanings include bit 0 (night), bit 1 (schedules disabled), and bit 2 (zone enabled). **Writes must preserve unrelated bits**; do not write a fixed value to a complete bitfield without reading its current value.
 
+## Installation
+
+Start with the [French step-by-step installation guide](docs/installation.fr.md), then see the [EW41 setup](docs/ew41-configuration.fr.md), [HACS Template Climate guide](docs/template-climate.fr.md), and [troubleshooting](docs/depannage.fr.md). The four-instance [Template Climate JSON reference](homeassistant/template-climate-options.json) is **not directly importable**: configure each instance in the Home Assistant UI.
+
 ## Project status
 
-**Documentation and configuration extraction in progress.** The published README describes a working personal installation; a cleaned, reproducible configuration and step-by-step installation guide are still being prepared. Do not treat this repository as a plug-and-play integration yet.
+**Documentation and configuration extraction in progress.** The published README describes a working personal installation; cleaned configuration examples and a French step-by-step installation guide are available; adaptation and compatibility checks remain necessary. Do not treat this repository as a plug-and-play integration yet.
 
 ## Safety and limitations
 
