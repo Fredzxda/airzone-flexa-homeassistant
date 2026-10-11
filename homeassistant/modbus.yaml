@@ -51,74 +51,13 @@
     scan_interval: 30
     data_type: int16
 
-  - name: "AZ Diagnostic Reg 1"
-    address: 1
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 2"
-    address: 2
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 3"
-    address: 3
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
+  # Nécessaire uniquement pour la synchronisation optionnelle de l'horloge Tacto.
   - name: "AZ Diagnostic Reg 4"
     address: 4
     slave: 1
     input_type: holding
     data_type: int16
     scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 5"
-    address: 5
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 6"
-    address: 6
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 7"
-    address: 7
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 8"
-    address: 8
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Diagnostic Reg 9"
-    address: 9
-    slave: 1
-    input_type: holding
-    data_type: int16
-    scan_interval: 60
-
-  - name: "AZ Reg 10"
-    address: 10
-    slave: 1
-    scan_interval: 60
-    data_type: int16
 
   - name: "Airzone Zone 1 État brut"
     address: 256
@@ -207,46 +146,3 @@
     data_type: int16
     scale: 0.1
     precision: 1
-
-  - name: "Airzone Test Z1 Reg 11"
-    slave: 1
-    address: 267
-    input_type: holding
-    data_type: uint16
-    scan_interval: 3600
-
-  - name: "Airzone Test Z1 Reg 12"
-    slave: 1
-    address: 268
-    input_type: holding
-    data_type: uint16
-    scan_interval: 3600
-
-  - name: "Airzone Test Z1 Reg 13"
-    slave: 1
-    address: 269
-    input_type: holding
-    data_type: uint16
-    scan_interval: 3600
-
-  - name: "Airzone Test Système Reg 11"
-    slave: 1
-    address: 11
-    input_type: holding
-    data_type: uint16
-    scan_interval: 3600
-
-  - name: "Airzone Test Système Reg 12"
-    slave: 1
-    address: 12
-    input_type: holding
-    data_type: uint16
-    scan_interval: 3600
-
-  - name: "Airzone Zones Présentes"
-    address: 9
-    slave: 1
-    input_type: holding
-    data_type: uint16
-    scan_interval: 60
-
