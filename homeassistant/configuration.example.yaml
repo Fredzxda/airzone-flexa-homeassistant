@@ -7,7 +7,12 @@
 # Les fichiers doivent être copiés dans le répertoire de configuration HA
 # (ou les chemins des !include adaptés).
 
-# Ajouter sous les clés existantes, sans créer de doublons :
+# EXEMPLE : utiliser ces inclusions uniquement si les clés correspondantes
+# ne sont pas déjà définies autrement dans configuration.yaml.
+# Ne pas ajouter ces lignes telles quelles à un fichier contenant déjà
+# modbus: ou template: ; fusionner les listes ou adapter les inclusions.
+# Ne pas déclarer deux fois le hub airzone_flexa.
+
 modbus: !include modbus.yaml
 template: !include templates.yaml
 
@@ -17,6 +22,7 @@ script: !include scripts.yaml
 # ATTENTION : si modbus: ou template: existent déjà dans configuration.yaml,
 # fusionner leur contenu avec les fichiers inclus plutôt que de les redéclarer.
 # De même, les scripts Airzone doivent être fusionnés dans scripts.yaml existant.
+# Guide complet : docs/installation.fr.md ; dépannage : docs/depannage.fr.md.
 #
 # L'automatisation de synchronisation de l'horloge est gérée par Home Assistant
 # via l'interface (automations.yaml), pas par ce fichier :
