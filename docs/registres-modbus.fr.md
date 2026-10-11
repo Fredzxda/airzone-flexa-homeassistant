@@ -8,7 +8,7 @@
 | 1 | -22016 | Signification inconnue |
 | 2 | 0 | Signification inconnue |
 | 3 | 0 | Signification inconnue |
-| 4 | Jour et heure, encodés sur 16 bits (vérifié sur Tacto maître) | Confirmé en lecture |
+| 4 | Jour et heure, encodés sur 16 bits (vérifié sur Tacto maître) | Confirmé en lecture et en écriture |
 | 5 | 34 | Signification inconnue |
 | 6 | 31 | Signification inconnue |
 | 7 | 0 | Signification inconnue |
@@ -31,6 +31,8 @@ heure_auto = (v >> 15) & 1
 ```
 
 **Vérification réelle :** après réglage du Tacto sur samedi (6) vers 13 h 02, lecture du registre 4 à 12 h 03 côté Home Assistant : `366` = `0x016E` = samedi (6), 13 h 01. L'écart d'une minute peut venir du décalage entre l'affichage et le rafraîchissement Modbus (60 s). L'historique montrait également un retour des minutes de 59 à 0 avec progression du champ heure. Cela confirme le décodage en lecture sur cette installation FLEXA 1.x.
+
+**Écriture confirmée sur l'installation de référence :** après avoir volontairement déréglé le jour et l'heure du Tacto, l'automatisation a écrit la valeur `3943` dans le registre 4 (dimanche, 12 h 15). La relecture Modbus a renvoyé `3943` et l'affichage du Tacto a été vérifié visuellement : le jour et l'heure étaient corrects. Ce test confirme l'écriture du registre 4 sur la centrale testée, sans valider pour autant une transition réelle entre heure d'été et heure d'hiver.
 
 **Synchronisation quotidienne mise en place dans l'installation de référence :** automation `automation.airzone_flexa_synchronisation_quotidienne_de_l_horloge`, exécutée chaque jour à **04:15 heure locale Home Assistant**. Ce créneau se situe après les bascules françaises d'heure d'été et d'hiver (autour de 02:00–03:00). L'automatisation rafraîchit `sensor.az_diagnostic_reg_4`, décode jour/heure/minutes et n'écrit l'adresse 4 (hub `airzone_flexa`, esclave 1) que si le jour diffère ou si la dérive horaire dépasse **2 minutes**. Elle conserve les bits 14 et 15 via `((v & 0xFFFF) // 16384) * 16384`, encode `minute * 256 + heure * 8 + jour_iso`, puis rafraîchit le capteur après l'écriture. Elle ne nécessite pas d'accès cloud.
 
