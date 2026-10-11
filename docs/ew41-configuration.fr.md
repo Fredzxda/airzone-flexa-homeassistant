@@ -41,6 +41,10 @@ Configurer la passerelle en conversion **Modbus TCP vers Modbus RTU** (et non en
 
 ## Configuration Home Assistant
 
+**Ajouter le bloc `modbus:` ci-dessous dans le fichier `configuration.yaml` de Home Assistant**, puis adapter l'adresse IP a celle de votre EW41. Si un bloc `modbus:` existe deja, ajouter l'entree `- name: airzone_flexa` a la liste existante : ne pas creer un second bloc `modbus:` au meme niveau.
+
+Apres modification, verifier la configuration Home Assistant puis redemarrer Home Assistant pour charger la configuration Modbus.
+
 Exemple minimal a adapter a votre reseau local :
 
 ```yaml
