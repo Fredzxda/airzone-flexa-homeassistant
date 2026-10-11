@@ -51,3 +51,16 @@ Projet en cours de documentation, **non encore pret a installer en un clic**. Ne
 ## Licence
 
 GNU GPL v3.0 - voir [LICENSE](LICENSE).
+
+## Fichiers de configuration et documentation
+
+Pour reproduire l'installation, consulter les fichiers suivants dans cet ordre :
+
+1. [Configuration de la passerelle EW41](docs/ew41-configuration.fr.md) : câblage RS485, paramètres 19200 8E1, réseau local et port 502.
+2. [Registres Modbus système et zones](docs/registres-modbus.fr.md) : valeurs observées, registres confirmés et hypothèses.
+3. [Configuration Modbus et capteurs](homeassistant/modbus.yaml) : fragment à intégrer dans `configuration.yaml` sous `modbus:`.
+4. [Capteurs templates et sélecteur de mode global](homeassistant/templates.yaml) : fragment à intégrer dans `configuration.yaml` sous `template:`.
+5. [Scripts de pilotage](homeassistant/scripts.yaml) : à ajouter à `scripts.yaml`.
+6. [Guide de l'intégration HACS Template Climate](docs/template-climate.fr.md) et [options des quatre thermostats](homeassistant/template-climate-options.json) : à configurer via l'interface Home Assistant.
+
+**Important :** les fichiers sont des exemples anonymisés extraits de l'installation de référence, pas un package prêt à installer. Fusionner les entrées avec les clés YAML existantes ; ne pas dupliquer `modbus:` ou `template:`. Tester les lectures avant d'activer les écritures.
