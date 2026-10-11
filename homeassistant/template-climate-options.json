@@ -1,6 +1,6 @@
 {
   "integration": "https://github.com/holdestmade/template_climate",
-  "note": "Options extraites de HA, anonymisées; correction de l'icône zone 3 dans cet exemple",
+  "note": "Exemple anonymisé des options de quatre instances HACS Template Climate ; référence manuelle, non importable",
   "zones": [
     {
       "zone": 1,
