@@ -16,7 +16,6 @@
     data_type: int16
     scale: 0.1
     precision: 1
-#        hvac_onoff_register: 256
 
   - name: "Clim Zone 2"
     address: 522
@@ -26,7 +25,6 @@
     data_type: int16
     scale: 0.1
     precision: 1
-#        hvac_onoff_register: 512
 
   - name: "Clim Zone 3"
     address: 778
@@ -36,7 +34,6 @@
     data_type: int16
     scale: 0.1
     precision: 1
-        # Pas de hvac_onoff_register : registre 768 = bitfield
 
   - name: "Clim Zone 4"
     address: 1034
@@ -46,7 +43,6 @@
     data_type: int16
     scale: 0.1
     precision: 1
-        # Pas de hvac_onoff_register : 1024 est un bitfield
 
   sensors:
   - name: "Airzone Mode Global"
