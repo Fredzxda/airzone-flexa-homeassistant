@@ -16,6 +16,11 @@
 | 9 | 15, potentiellement indicateur de zones présentes | À confirmer |
 | 10 | 0 | Signification inconnue |
 | 11–12 | Lectures exploratoires | Non interprété |
+| 13–16 | 0 lors du relevé du 14/10/2026 | Signification inconnue |
+| 17 | 16912 lors du relevé du 14/10/2026 ; absent de la table des registres système du fichier Airzone `OBJ_AZ6_MODBUS_RTU_TCPIP_MUL_BLOCK(2).xlsx` | Signification inconnue |
+| 18 | Température maximale du système en dixièmes de °C : 300 = 30,0 °C | Identifié sur installation FLEXA 1.x |
+| 19 | Température minimale du système en dixièmes de °C : 180 = 18,0 °C | Identifié sur installation FLEXA 1.x |
+| 20 | 0 lors du relevé du 14/10/2026 | Signification inconnue |
 
 ## Registre 4 — jour et heure du Tacto maître
 
