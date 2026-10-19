@@ -53,7 +53,12 @@ Pour écrire le registre 0, préserver les bits supérieurs (voir `airzone_mode_
 | Consigne min. | 257 | 513 | 769 | 1025 |
 | Consigne max. | 258 | 514 | 770 | 1026 |
 | Consigne | 259 | 515 | 771 | 1027 |
+| Configuration de zone (+4), bit 0 : thermostat principal (1) / secondaire (0) | 260 | 516 | 772 | 1028 |
 | Température ambiante | 266 | 522 | 778 | 1034 |
 | Registre exploratoire +13 | 269 | 525 | 781 | 1037 |
 
 Températures en dixièmes de degré. Dans le registre d'état : bit 0 = nuit, bit 1 = programmations désactivées, bit 2 = zone activée. **Préserver les autres bits lors des écritures.** Le diagnostic de batterie faible via +13 n'est pas confirmé sur cette génération.
+
+### Registre de zone +4 — type de thermostat (bit 0)
+
+**Confirmé sur FLEXA 1.2 avec Tacto :** le bit 0 du registre relatif `+4` indique le rôle du thermostat : `1` = thermostat principal (Tacto maître), `0` = thermostat secondaire (Tacto de zone). Relevé du 19/10/2026 : zone 1 (salon), adresse `260`, valeur brute `1` ; zones 2 à 4, adresses `516`, `772`, `1028`, valeur brute `0`. L'utilisateur a confirmé que le Tacto du salon est le maître. Cette concordance confirme l'interprétation du bit 0 sur l'installation testée ; les autres bits du registre restent à caractériser. **La valeur 1 ne signifie pas « un moteur secondaire »** et ne permet pas de déduire le nombre de registres motorisés affectés à la zone.
